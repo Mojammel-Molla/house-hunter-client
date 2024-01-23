@@ -37,7 +37,10 @@ const LogIn = () => {
               />
               <p>
                 Don't have account please{' '}
-                <Link to="/register" className="text-blue-600 text-sm">
+                <Link
+                  to="/register"
+                  className="text-blue-600 font-medium text-sm"
+                >
                   Register
                 </Link>
               </p>

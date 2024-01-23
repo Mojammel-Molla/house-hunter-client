@@ -1,12 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAxios from '../../hooks/useAxios';
 
 const Register = () => {
+  const axios = useAxios();
+  const navigate = useNavigate();
   const handleRegister = e => {
     e.preventDefault();
     const name = e.target.name.value;
+    const phone = e.target.phone.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(name, email, password);
+    const user = {
+      name: name,
+      email: email,
+      phone: phone,
+      password: password,
+      role: 'renter',
+    };
+
+    axios.post('/users', user).then(res => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        alert('user added successfully');
+        navigate('/');
+      }
+    });
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -21,6 +40,18 @@ const Register = () => {
                 name="name"
                 type="text"
                 placeholder="name"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Phone</span>
+              </label>
+              <input
+                name="phone"
+                type="number"
+                placeholder="phone number"
                 className="input input-bordered"
                 required
               />
@@ -49,9 +80,9 @@ const Register = () => {
                 required
               />
               <p>
-                Don't have account please{' '}
-                <Link to="/login" className="text-blue-600 text-sm">
-                  Register
+                Already have account please{' '}
+                <Link to="/login" className="text-blue-600 font-medium text-sm">
+                  Log In
                 </Link>
               </p>
             </div>
