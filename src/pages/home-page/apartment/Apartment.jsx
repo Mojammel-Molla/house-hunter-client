@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
+
 const Apartment = ({ apartment }) => {
   const {
+    _id,
     name,
     address,
     city,
@@ -7,7 +10,7 @@ const Apartment = ({ apartment }) => {
     bathrooms,
     roomSize,
     picture,
-    availaiblityDate,
+    availabilityDate,
     rentPerMonth,
     phoneNumber,
     description,
@@ -19,9 +22,21 @@ const Apartment = ({ apartment }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div>
+          <p>
+            City: <span className="font-semibold">{city}</span>
+          </p>
+          <p>
+            Available till:{' '}
+            <span className="font-semibold">{availabilityDate}</span>
+          </p>
+        </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <Link to={`/apartment/${_id}`}>
+            <button className="btn bg-blue-600 text-white hover:bg-blue-900">
+              View Detail
+            </button>
+          </Link>
         </div>
       </div>
     </div>

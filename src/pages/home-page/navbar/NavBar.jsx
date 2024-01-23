@@ -1,17 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   const navLinks = (
     <>
-      <li>Home</li>
-      <li>Rent</li>
-      <li>Booking</li>
-      <li>Dashboard</li>
+      <li>
+        <NavLink
+          className={isActive => (isActive ? 'text-blue-600 underline' : '')}
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
+      {/* <li>Rent</li> */}
+      <li>
+        <NavLink
+          className={isActive => (isActive ? 'text-blue-600 underline' : '')}
+          to="/my-bookings"
+        >
+          My Bookings
+        </NavLink>
+      </li>
+      {/* <li>Dashboard</li> */}
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 my-3">
+    <div className="navbar bg-base-100 my-3 border-b-2">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -37,10 +51,14 @@ const NavBar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn  text-xl">House Hunter</a>
+        <a className="font-extrabold text-xl">
+          House <span className="text-blue-600">Hunter</span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal px-1 gap-5">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 gap-5 font-bold">
+          {navLinks}
+        </ul>
       </div>
       <div className="navbar-end">
         <Link to="/login">
