@@ -5,7 +5,9 @@ const NavBar = () => {
     <>
       <li>
         <NavLink
-          className={isActive => (isActive ? 'text-blue-600 underline' : '')}
+          className={({ isActive }) =>
+            isActive ? 'text-blue-600 underline' : ''
+          }
           to="/"
         >
           Home
@@ -14,13 +16,24 @@ const NavBar = () => {
       {/* <li>Rent</li> */}
       <li>
         <NavLink
-          className={isActive => (isActive ? 'text-blue-600 underline' : '')}
+          className={({ isActive }) =>
+            isActive ? 'text-blue-600 underline' : ''
+          }
           to="/my-bookings"
         >
           My Bookings
         </NavLink>
       </li>
-      {/* <li>Dashboard</li> */}
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? 'text-blue-600 underline' : ''
+          }
+          to="/dashboard"
+        >
+          Dashboard
+        </NavLink>
+      </li>
     </>
   );
 
